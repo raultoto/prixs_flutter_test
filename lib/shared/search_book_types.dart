@@ -1,0 +1,4 @@
+enum SearchBookTypes{
+  byName,
+  byAuthor,
+}  
