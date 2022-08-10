@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:prixs_flutter_test/features/list_books/presentation/pages/books_page.dart';
+
+import 'features/list_books/presentation/pages/books_page.dart';
 import 'injection.dart';
 
 void main() async {
@@ -11,6 +12,12 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Material App', debugShowCheckedModeBanner: false, home: BooksPage());
+    return MaterialApp(
+      title: 'Material App',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData.dark(),
+      themeMode: ThemeMode.dark,
+      home: BooksPage(),
+    );
   }
 }

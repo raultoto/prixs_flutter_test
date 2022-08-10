@@ -1,269 +1,230 @@
+// To parse this JSON data, do
+//
+//     final SearchModel = SearchModelFromJson(jsonString);
+
 import 'dart:convert';
 
-class DocModel {
-    DocModel({
-        required this.key,
-        required this.type,
-        required this.seed,
-        required this.title,
-        required this.titleSuggest,
-        required this.editionCount,
-        required this.editionKey,
-        required this.publishDate,
-        required this.publishYear,
-        required this.firstPublishYear,
-        required this.numberOfPagesMedian,
-        required this.lccn,
-        required this.publishPlace,
-        required this.oclc,
-        required this.contributor,
-        required this.lcc,
-        required this.ddc,
-        required this.isbn,
-        required this.lastModifiedI,
-        required this.ebookCountI,
-        required this.hasFulltext,
-        required this.publicScanB,
-        required this.ia,
-        required this.iaCollectionS,
-        required this.lendingEditionS,
-        required this.lendingIdentifierS,
-        required this.printdisabledS,
-        required this.coverEditionKey,
-        required this.coverI,
-        required this.publisher,
-        required this.language,
-        required this.authorKey,
-        required this.authorName,
-        required this.authorAlternativeName,
-        required this.person,
-        required this.place,
-        required this.subject,
-        required this.time,
-        required this.idAlibrisId,
-        required this.idAmazon,
-        required this.idCanadianNationalLibraryArchive,
-        required this.idDepsitoLegal,
-        required this.idGoodreads,
-        required this.idGoogle,
-        required this.idLibrarything,
-        required this.idOverdrive,
-        required this.idPaperbackSwap,
-        required this.idWikidata,
-        required this.iaLoadedId,
-        required this.iaBoxId,
-        required this.publisherFacet,
-        required this.personKey,
-        required this.placeKey,
-        required this.timeFacet,
-        required this.personFacet,
-        required this.subjectFacet,
-        required this.version,
-        required this.placeFacet,
-        required this.lccSort,
-        required this.authorFacet,
-        required this.subjectKey,
-        required this.ddcSort,
-        required this.timeKey,
-    });
+import 'package:prixs_flutter_test/features/list_books/domain/entities/seach_obj.dart';
 
-    final String key;
-    final String type;
-    final List<String> seed;
-    final String title;
-    final String titleSuggest;
-    final int editionCount;
-    final List<String> editionKey;
-    final List<String> publishDate;
-    final List<int> publishYear;
-    final int firstPublishYear;
-    final int numberOfPagesMedian;
-    final List<String> lccn;
-    final List<String> publishPlace;
-    final List<String> oclc;
-    final List<String> contributor;
-    final List<String> lcc;
-    final List<String> ddc;
-    final List<String> isbn;
-    final int lastModifiedI;
-    final int ebookCountI;
-    final bool hasFulltext;
-    final bool publicScanB;
-    final List<String> ia;
-    final String iaCollectionS;
-    final String lendingEditionS;
-    final String lendingIdentifierS;
-    final String printdisabledS;
-    final String coverEditionKey;
-    final int coverI;
-    final List<String> publisher;
-    final List<String> language;
-    final List<String> authorKey;
-    final List<String> authorName;
-    final List<String> authorAlternativeName;
-    final List<String> person;
-    final List<String> place;
-    final List<String> subject;
-    final List<String> time;
-    final List<String> idAlibrisId;
-    final List<String> idAmazon;
-    final List<String> idCanadianNationalLibraryArchive;
-    final List<String> idDepsitoLegal;
-    final List<String> idGoodreads;
-    final List<String> idGoogle;
-    final List<String> idLibrarything;
-    final List<String> idOverdrive;
-    final List<String> idPaperbackSwap;
-    final List<String> idWikidata;
-    final List<String> iaLoadedId;
-    final List<String> iaBoxId;
-    final List<String> publisherFacet;
-    final List<String> personKey;
-    final List<String> placeKey;
-    final List<String> timeFacet;
-    final List<String> personFacet;
-    final List<String> subjectFacet;
-    final double version;
-    final List<String> placeFacet;
-    final String lccSort;
-    final List<String> authorFacet;
-    final List<String> subjectKey;
-    final String ddcSort;
-    final List<String> timeKey;
+class SearchModel {
+  SearchModel({
+    required this.numFound,
+    required this.start,
+    required this.numFoundExact,
+    required this.docs,
+  });
 
-    factory DocModel.fromRawJson(String str) => DocModel.fromJson(json.decode(str));
+  final int numFound;
+  final int start;
+  final bool numFoundExact;
+  final List<DocModel> docs;
 
-    String toRawJson() => json.encode(toJson());
+  factory SearchModel.fromRawJson(String str) => SearchModel.fromJson(json.decode(str));
 
-    factory DocModel.fromJson(Map<String, dynamic> json) => DocModel(
+  factory SearchModel.fromJson(Map<String, dynamic> json) => SearchModel(
+        numFound: json["numFound"],
+        start: json["start"],
+        numFoundExact: json["numFoundExact"],
+        docs: List<DocModel>.from(json["docs"].map((x) => DocModel.fromJson(x))),
+      );
+}
+
+class DocModel extends Doc {
+  DocModel({
+    required key,
+    required type,
+    required seed,
+    required title,
+    required titleSuggest,
+    required editionCount,
+    required editionKey,
+    required publishDate,
+    required publishYear,
+    required firstPublishYear,
+    required numberOfPagesMedian,
+    required lccn,
+    required publishPlace,
+    required oclc,
+    required contributor,
+    required lcc,
+    required ddc,
+    required isbn,
+    required lastModifiedI,
+    required ebookCountI,
+    required hasFulltext,
+    required publicScanB,
+    required ia,
+    required iaCollectionS,
+    required lendingEditionS,
+    required lendingIdentifierS,
+    required printdisabledS,
+    required coverEditionKey,
+    required coverI,
+    required publisher,
+    required language,
+    required authorKey,
+    required authorName,
+    required authorAlternativeName,
+    required person,
+    required place,
+    required subject,
+    required time,
+    required idAlibrisId,
+    required idAmazon,
+    required idCanadianNationalLibraryArchive,
+    required idDepsitoLegal,
+    required idGoodreads,
+    required idGoogle,
+    required idLibrarything,
+    required idOverdrive,
+    required idPaperbackSwap,
+    required idWikidata,
+    required iaLoadedId,
+    required iaBoxId,
+    required publisherFacet,
+    required personKey,
+    required placeKey,
+    required timeFacet,
+    required personFacet,
+    required subjectFacet,
+    required version,
+    required placeFacet,
+    required lccSort,
+    required authorFacet,
+    required subjectKey,
+    required ddcSort,
+    required timeKey,
+  }) : super(
+          key: key,
+          type: type,
+          seed: seed,
+          title: title,
+          titleSuggest: titleSuggest,
+          editionCount: editionCount,
+          editionKey: editionKey,
+          publishDate: publishDate,
+          publishYear: publishYear,
+          firstPublishYear: firstPublishYear,
+          numberOfPagesMedian: numberOfPagesMedian,
+          lccn: lccn,
+          publishPlace: publishPlace,
+          oclc: oclc,
+          contributor: contributor,
+          lcc: lcc,
+          ddc: ddc,
+          isbn: isbn,
+          lastModifiedI: lastModifiedI,
+          ebookCountI: ebookCountI,
+          hasFulltext: hasFulltext,
+          publicScanB: publicScanB,
+          ia: ia,
+          iaCollectionS: iaCollectionS,
+          lendingEditionS: lendingEditionS,
+          lendingIdentifierS: lendingIdentifierS,
+          printdisabledS: printdisabledS,
+          coverEditionKey: coverEditionKey,
+          coverI: coverI,
+          publisher: publisher,
+          language: language,
+          authorKey: authorKey,
+          authorName: authorName,
+          authorAlternativeName: authorAlternativeName,
+          person: person,
+          place: place,
+          subject: subject,
+          time: time,
+          idAlibrisId: idAlibrisId,
+          idAmazon: idAmazon,
+          idCanadianNationalLibraryArchive: idCanadianNationalLibraryArchive,
+          idDepsitoLegal: idDepsitoLegal,
+          idGoodreads: idGoodreads,
+          idGoogle: idGoogle,
+          idLibrarything: idLibrarything,
+          idOverdrive: idOverdrive,
+          idPaperbackSwap: idPaperbackSwap,
+          idWikidata: idWikidata,
+          iaLoadedId: iaLoadedId,
+          iaBoxId: iaBoxId,
+          publisherFacet: publisherFacet,
+          personKey: personKey,
+          placeKey: placeKey,
+          timeFacet: timeFacet,
+          personFacet: personFacet,
+          subjectFacet: subjectFacet,
+          version: version,
+          placeFacet: placeFacet,
+          lccSort: lccSort,
+          authorFacet: authorFacet,
+          subjectKey: subjectKey,
+          ddcSort: ddcSort,
+          timeKey: timeKey,
+        );
+
+  factory DocModel.fromRawJson(String str) => DocModel.fromJson(json.decode(str));
+
+  factory DocModel.fromJson(Map<String, dynamic> json) => DocModel(
         key: json["key"],
         type: json["type"],
-        seed: List<String>.from(json["seed"].map((x) => x)),
+        seed: json["seed"] == null ? null : List<String>.from(json["seed"].map((x) => x)),
         title: json["title"],
         titleSuggest: json["title_suggest"],
         editionCount: json["edition_count"],
-        editionKey: List<String>.from(json["edition_key"].map((x) => x)),
-        publishDate: List<String>.from(json["publish_date"].map((x) => x)),
-        publishYear: List<int>.from(json["publish_year"].map((x) => x)),
+        editionKey: json["edition_key"] == null ? null : List<String>.from(json["edition_key"].map((x) => x)),
+        publishDate: json["publish_date"] == null ? null : List<String>.from(json["publish_date"].map((x) => x)),
+        publishYear: json["publish_year"] == null ? null : List<int>.from(json["publish_year"].map((x) => x)),
         firstPublishYear: json["first_publish_year"],
         numberOfPagesMedian: json["number_of_pages_median"],
-        lccn: List<String>.from(json["lccn"].map((x) => x)),
-        publishPlace: List<String>.from(json["publish_place"].map((x) => x)),
-        oclc: List<String>.from(json["oclc"].map((x) => x)),
-        contributor: List<String>.from(json["contributor"].map((x) => x)),
-        lcc: List<String>.from(json["lcc"].map((x) => x)),
-        ddc: List<String>.from(json["ddc"].map((x) => x)),
-        isbn: List<String>.from(json["isbn"].map((x) => x)),
-        lastModifiedI: json["last_modified_i"],
-        ebookCountI: json["ebook_count_i"],
-        hasFulltext: json["has_fulltext"],
-        publicScanB: json["public_scan_b"],
-        ia: List<String>.from(json["ia"].map((x) => x)),
-        iaCollectionS: json["ia_collection_s"],
-        lendingEditionS: json["lending_edition_s"],
-        lendingIdentifierS: json["lending_identifier_s"],
-        printdisabledS: json["printdisabled_s"],
-        coverEditionKey: json["cover_edition_key"],
-        coverI: json["cover_i"],
-        publisher: List<String>.from(json["publisher"].map((x) => x)),
-        language: List<String>.from(json["language"].map((x) => x)),
-        authorKey: List<String>.from(json["author_key"].map((x) => x)),
-        authorName: List<String>.from(json["author_name"].map((x) => x)),
-        authorAlternativeName: List<String>.from(json["author_alternative_name"].map((x) => x)),
-        person: List<String>.from(json["person"].map((x) => x)),
-        place: List<String>.from(json["place"].map((x) => x)),
-        subject: List<String>.from(json["subject"].map((x) => x)),
-        time: List<String>.from(json["time"].map((x) => x)),
-        idAlibrisId: List<String>.from(json["id_alibris_id"].map((x) => x)),
-        idAmazon: List<String>.from(json["id_amazon"].map((x) => x)),
-        idCanadianNationalLibraryArchive: List<String>.from(json["id_canadian_national_library_archive"].map((x) => x)),
-        idDepsitoLegal: List<String>.from(json["id_depósito_legal"].map((x) => x)),
-        idGoodreads: List<String>.from(json["id_goodreads"].map((x) => x)),
-        idGoogle: List<String>.from(json["id_google"].map((x) => x)),
-        idLibrarything: List<String>.from(json["id_librarything"].map((x) => x)),
-        idOverdrive: List<String>.from(json["id_overdrive"].map((x) => x)),
-        idPaperbackSwap: List<String>.from(json["id_paperback_swap"].map((x) => x)),
-        idWikidata: List<String>.from(json["id_wikidata"].map((x) => x)),
-        iaLoadedId: List<String>.from(json["ia_loaded_id"].map((x) => x)),
-        iaBoxId: List<String>.from(json["ia_box_id"].map((x) => x)),
-        publisherFacet: List<String>.from(json["publisher_facet"].map((x) => x)),
-        personKey: List<String>.from(json["person_key"].map((x) => x)),
-        placeKey: List<String>.from(json["place_key"].map((x) => x)),
-        timeFacet: List<String>.from(json["time_facet"].map((x) => x)),
-        personFacet: List<String>.from(json["person_facet"].map((x) => x)),
-        subjectFacet: List<String>.from(json["subject_facet"].map((x) => x)),
-        version: json["_version_"].toDouble(),
-        placeFacet: List<String>.from(json["place_facet"].map((x) => x)),
+        lccn: json["lccn"] == null ? null : List<String>.from(json["lccn"].map((x) => x)),
+        publishPlace: json["publish_place"] == null ? null : List<String>.from(json["publish_place"].map((x) => x)),
+        oclc: json["oclc"] == null ? null : List<String>.from(json["oclc"].map((x) => x)),
+        contributor: json["contributor"] == null ? null : List<String>.from(json["contributor"].map((x) => x)),
+        lcc: json["lcc"] == null ? null : List<String>.from(json["lcc"].map((x) => x)),
+        ddc: json["ddc"] == null ? null : List<String>.from(json["ddc"].map((x) => x)),
+        isbn: json["isbn"] == null ? null : List<String>.from(json["isbn"].map((x) => x)),
+        lastModifiedI: json["last_modified_i"] == null ? null : json["last_modified_i"],
+        ebookCountI: json["ebook_count_i"] == null ? null : json["ebook_count_i"],
+        hasFulltext: json["has_fulltext"] == null ? null : json["has_fulltext"],
+        publicScanB: json["public_scan_b"] == null ? null : json["public_scan_b"],
+        ia: json["ia"] == null ? null : List<String>.from(json["ia"].map((x) => x)),
+        iaCollectionS: json["ia_collection_s"] == null ? null : json["ia_collection_s"],
+        lendingEditionS: json["lending_edition_s"] == null ? null : json["lending_edition_s"],
+        lendingIdentifierS: json["lending_identifier_s"] == null ? null : json["lending_identifier_s"],
+        printdisabledS: json["printdisabled_s"] == null ? null : json["printdisabled_s"],
+        coverEditionKey: json["cover_edition_key"] == null ? null : json["cover_edition_key"],
+        coverI: json["cover_i"] == null ? null : json["cover_i"],
+        publisher: json["publisher"] == null ? null : List<String>.from(json["publisher"].map((x) => x)),
+        language: json["language"] == null ? null : List<String>.from(json["language"].map((x) => x)),
+        authorKey: json["author_key"] == null ? null : List<String>.from(json["author_key"].map((x) => x)),
+        authorName: json["author_name"] == null ? null : List<String>.from(json["author_name"].map((x) => x)),
+        authorAlternativeName: json["author_alternative_name"] == null ? null : List<String>.from(json["author_alternative_name"].map((x) => x)),
+        person: json["person"] == null ? null : List<String>.from(json["person"].map((x) => x)),
+        place: json["place"] == null ? null : List<String>.from(json["place"].map((x) => x)),
+        subject: json["subject"] == null ? null : List<String>.from(json["subject"].map((x) => x)),
+        time: json["time"] == null ? null : List<String>.from(json["time"].map((x) => x)),
+        idAlibrisId: json["id_alibris_id"] == null ? null : List<String>.from(json["id_alibris_id"].map((x) => x)),
+        idAmazon: json["id_amazon"] == null ? null : List<String>.from(json["id_amazon"].map((x) => x)),
+        idCanadianNationalLibraryArchive: json["id_canadian_national_library_archive"] == null ? null : List<String>.from(json["id_canadian_national_library_archive"].map((x) => x)),
+        idDepsitoLegal: json["id_depósito_legal"] == null ? null : List<String>.from(json["id_depósito_legal"].map((x) => x)),
+        idGoodreads: json["id_goodreads"] == null ? null : List<String>.from(json["id_goodreads"].map((x) => x)),
+        idGoogle: json["id_google"] == null ? null : List<String>.from(json["id_google"].map((x) => x)),
+        idLibrarything: json["id_librarything"] == null ? null : List<String>.from(json["id_librarything"].map((x) => x)),
+        idOverdrive: json["id_overdrive"] == null ? null : List<String>.from(json["id_overdrive"].map((x) => x)),
+        idPaperbackSwap: json["id_paperback_swap"] == null ? null : List<String>.from(json["id_paperback_swap"].map((x) => x)),
+        idWikidata: json["id_wikidata"] == null ? null : List<String>.from(json["id_wikidata"].map((x) => x)),
+        iaLoadedId: json["ia_loaded_id"] == null ? null : List<String>.from(json["ia_loaded_id"].map((x) => x)),
+        iaBoxId: json["ia_box_id"] == null ? null : List<String>.from(json["ia_box_id"].map((x) => x)),
+        publisherFacet: json["publisher_facet"] == null ? null : List<String>.from(json["publisher_facet"].map((x) => x)),
+        personKey: json["person_key"] == null ? null : List<String>.from(json["person_key"].map((x) => x)),
+        placeKey: json["place_key"] == null ? null : List<String>.from(json["place_key"].map((x) => x)),
+        timeFacet: json["time_facet"] == null ? null : List<String>.from(json["time_facet"].map((x) => x)),
+        personFacet: json["person_facet"] == null ? null : List<String>.from(json["person_facet"].map((x) => x)),
+        subjectFacet: json["subject_facet"] == null ? null : List<String>.from(json["subject_facet"].map((x) => x)),
+        version: json["_version_"] == null ? null : json["_version_"].toDouble(),
+        placeFacet: json["place_facet"] == null ? null : List<String>.from(json["place_facet"].map((x) => x)),
         lccSort: json["lcc_sort"],
-        authorFacet: List<String>.from(json["author_facet"].map((x) => x)),
-        subjectKey: List<String>.from(json["subject_key"].map((x) => x)),
+        authorFacet: json["author_facet"] == null ? null : List<String>.from(json["author_facet"].map((x) => x)),
+        subjectKey: json["subject_key"] == null ? null : List<String>.from(json["subject_key"].map((x) => x)),
         ddcSort: json["ddc_sort"],
-        timeKey: List<String>.from(json["time_key"].map((x) => x)),
-    );
-
-    Map<String, dynamic> toJson() => {
-        "key": key,
-        "type": type,
-        "seed": List<dynamic>.from(seed.map((x) => x)),
-        "title": title,
-        "title_suggest": titleSuggest,
-        "edition_count": editionCount,
-        "edition_key": List<dynamic>.from(editionKey.map((x) => x)),
-        "publish_date": List<dynamic>.from(publishDate.map((x) => x)),
-        "publish_year": List<dynamic>.from(publishYear.map((x) => x)),
-        "first_publish_year": firstPublishYear,
-        "number_of_pages_median": numberOfPagesMedian,
-        "lccn": List<dynamic>.from(lccn.map((x) => x)),
-        "publish_place": List<dynamic>.from(publishPlace.map((x) => x)),
-        "oclc": List<dynamic>.from(oclc.map((x) => x)),
-        "contributor": List<dynamic>.from(contributor.map((x) => x)),
-        "lcc": List<dynamic>.from(lcc.map((x) => x)),
-        "ddc": List<dynamic>.from(ddc.map((x) => x)),
-        "isbn": List<dynamic>.from(isbn.map((x) => x)),
-        "last_modified_i": lastModifiedI,
-        "ebook_count_i": ebookCountI,
-        "has_fulltext": hasFulltext,
-        "public_scan_b": publicScanB,
-        "ia": List<dynamic>.from(ia.map((x) => x)),
-        "ia_collection_s": iaCollectionS,
-        "lending_edition_s": lendingEditionS,
-        "lending_identifier_s": lendingIdentifierS,
-        "printdisabled_s": printdisabledS,
-        "cover_edition_key": coverEditionKey,
-        "cover_i": coverI,
-        "publisher": List<dynamic>.from(publisher.map((x) => x)),
-        "language": List<dynamic>.from(language.map((x) => x)),
-        "author_key": List<dynamic>.from(authorKey.map((x) => x)),
-        "author_name": List<dynamic>.from(authorName.map((x) => x)),
-        "author_alternative_name": List<dynamic>.from(authorAlternativeName.map((x) => x)),
-        "person": List<dynamic>.from(person.map((x) => x)),
-        "place": List<dynamic>.from(place.map((x) => x)),
-        "subject": List<dynamic>.from(subject.map((x) => x)),
-        "time": List<dynamic>.from(time.map((x) => x)),
-        "id_alibris_id": List<dynamic>.from(idAlibrisId.map((x) => x)),
-        "id_amazon": List<dynamic>.from(idAmazon.map((x) => x)),
-        "id_canadian_national_library_archive": List<dynamic>.from(idCanadianNationalLibraryArchive.map((x) => x)),
-        "id_depósito_legal": List<dynamic>.from(idDepsitoLegal.map((x) => x)),
-        "id_goodreads": List<dynamic>.from(idGoodreads.map((x) => x)),
-        "id_google": List<dynamic>.from(idGoogle.map((x) => x)),
-        "id_librarything": List<dynamic>.from(idLibrarything.map((x) => x)),
-        "id_overdrive": List<dynamic>.from(idOverdrive.map((x) => x)),
-        "id_paperback_swap": List<dynamic>.from(idPaperbackSwap.map((x) => x)),
-        "id_wikidata": List<dynamic>.from(idWikidata.map((x) => x)),
-        "ia_loaded_id": List<dynamic>.from(iaLoadedId.map((x) => x)),
-        "ia_box_id": List<dynamic>.from(iaBoxId.map((x) => x)),
-        "publisher_facet": List<dynamic>.from(publisherFacet.map((x) => x)),
-        "person_key": List<dynamic>.from(personKey.map((x) => x)),
-        "place_key": List<dynamic>.from(placeKey.map((x) => x)),
-        "time_facet": List<dynamic>.from(timeFacet.map((x) => x)),
-        "person_facet": List<dynamic>.from(personFacet.map((x) => x)),
-        "subject_facet": List<dynamic>.from(subjectFacet.map((x) => x)),
-        "_version_": version,
-        "place_facet": List<dynamic>.from(placeFacet.map((x) => x)),
-        "lcc_sort": lccSort,
-        "author_facet": List<dynamic>.from(authorFacet.map((x) => x)),
-        "subject_key": List<dynamic>.from(subjectKey.map((x) => x)),
-        "ddc_sort": ddcSort,
-        "time_key": List<dynamic>.from(timeKey.map((x) => x)),
-    };
+        timeKey: json["time_key"] == null ? null : List<String>.from(json["time_key"].map((x) => x)),
+      );
 }

@@ -1,13 +1,14 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../shared/search_book_types.dart';
 import '../../domain/entities/seach_obj.dart';
 import '../../domain/repositories/book_repository.dart';
-import '../../../../shared/search_book_types.dart';
 
+part 'search_book_bloc.freezed.dart';
 part 'search_book_event.dart';
 part 'search_book_state.dart';
-part 'search_book_bloc.freezed.dart';
 
 @injectable
 class SearchBookBloc extends Bloc<SearchBookEvent, SearchBookState> {
