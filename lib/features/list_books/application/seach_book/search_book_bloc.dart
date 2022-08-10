@@ -14,24 +14,24 @@ part 'search_book_state.dart';
 class SearchBookBloc extends Bloc<SearchBookEvent, SearchBookState> {
   final BookRepository _bookRepository;
   SearchBookBloc(this._bookRepository) : super(const _Initial()) {
-    on<SearchBookEvent>(_onSvgToMuscleEvent);
+    on<SearchBookEvent>(_onEvent);
   }
-  Future<void> _onSvgToMuscleEvent(
+  Future<void> _onEvent(
     SearchBookEvent event,
     Emitter<SearchBookState> emit,
   ) {
-    return event.map(
-      watch: (e) async {
-        emit(const SearchBookState.loading());
-        final result = await searchTypesToFunction(e.type)(e.input);
-        emit(
-          result.fold(
-            (failure) => SearchBookState.failure(failure),
-            (body) => SearchBookState.sucess(body),
-          ),
-        );
-      },
-    );
+    return event.map(watch: (e) async {
+      emit(const SearchBookState.loading());
+      final result = await searchTypesToFunction(e.type)(e.input);
+      emit(
+        result.fold(
+          (failure) => SearchBookState.failure(failure),
+          (body) {
+            return SearchBookState.sucess(body);
+          },
+        ),
+      );
+    });
   }
 
   searchTypesToFunction(SearchBookTypes type) {

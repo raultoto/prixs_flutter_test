@@ -4,14 +4,16 @@ class PosterImageWidget extends StatelessWidget {
   const PosterImageWidget({
     Key? key,
     required this.id,
+    this.size='M'
   }) : super(key: key);
 
   final int? id;
+  final String? size;
 
   @override
   Widget build(BuildContext context) {
     return Image.network(
-      "https://covers.openlibrary.org/b/id/$id-M.jpg",
+      "https://covers.openlibrary.org/b/id/$id-$size.jpg",
       fit: BoxFit.cover,
       frameBuilder: (_, image, loadingBuilder, __) {
         if (loadingBuilder == null) {
@@ -24,9 +26,7 @@ class PosterImageWidget extends StatelessWidget {
         if (loadingProgress == null) return child;
         return Center(
           child: CircularProgressIndicator(
-            value: loadingProgress.expectedTotalBytes != null
-                ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes!
-                : null,
+            value: loadingProgress.expectedTotalBytes != null ? loadingProgress.cumulativeBytesLoaded / loadingProgress.expectedTotalBytes! : null,
           ),
         );
       },

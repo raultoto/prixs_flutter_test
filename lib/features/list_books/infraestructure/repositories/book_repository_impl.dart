@@ -15,7 +15,7 @@ class BookRepositoryImpl implements BookRepository {
   @override
   Future<Either<String, List<Doc>>> searchBookByName(String name) async {
     try {
-      final url = Uri.http('www.openlibrary.org', '/search.json?author=tolkien');
+      final url = Uri.http('www.openlibrary.org', '/search.json?q=$name');
       final response = await http.get(url);
       final decodedData = json.decode(response.body);
       final searchModel = SearchModel.fromJson(decodedData);
@@ -28,7 +28,7 @@ class BookRepositoryImpl implements BookRepository {
   @override
   Future<Either<String, List<Doc>>> searchBookByAuthor(String authorName) async {
     try {
-      final url = Uri.http('www.openlibrary.org', '/search.json?author=tolkien');
+      final url = Uri.http('www.openlibrary.org', '/search.json?author=$authorName');
       final response = await http.get(url);
       final decodedData = json.decode(response.body);
       final searchModel = SearchModel.fromJson(decodedData);

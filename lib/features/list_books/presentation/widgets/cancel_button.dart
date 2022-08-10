@@ -18,7 +18,7 @@ class CancelButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(100.0),
         ),
         child: const Icon(
-          Icons.close,
+          Icons.arrow_back,
           color: AppColors.white,
           size: 20.0,
         ),

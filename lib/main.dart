@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-import 'features/list_books/presentation/pages/books_page.dart';
+import 'features/home/presentation/pages/home_page.dart';
 import 'injection.dart';
 
 void main() async {
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
-      home: BooksPage(),
+      home: HomePage(),
     );
   }
 }
