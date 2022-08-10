@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prixs_flutter_test/core/value_validators/value_validators.dart';
-import 'package:prixs_flutter_test/shared/utils/time_utils.dart';
+import '../../../../core/value_validators/value_validators.dart';
+import '../../../../shared/utils/time_utils.dart';
 
 enum Genere { man, woman }
 
@@ -20,8 +20,9 @@ class _FormPageState extends State<FormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Form'),
+        title: const Text('Form'),
         elevation: 0.0,
+        centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
       body: Center(

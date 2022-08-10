@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prixs_flutter_test/features/list_books/application/seach_book/search_book_bloc.dart';
-import 'package:prixs_flutter_test/features/list_books/domain/entities/seach_obj.dart';
-import 'package:prixs_flutter_test/features/list_books/presentation/widgets/book_detail.dart';
-import 'package:prixs_flutter_test/injection.dart';
-import 'package:prixs_flutter_test/shared/search_book_types.dart';
+import '../../application/seach_book/search_book_bloc.dart';
+import '../../domain/entities/seach_obj.dart';
+import '../widgets/book_detail.dart';
+import '../../../../injection.dart';
+import '../../../../shared/search_book_types.dart';
 
 import '../../../../shared/constants/book_categories.dart';
 import '../../application/load_books/load_books_bloc.dart';
@@ -18,6 +18,7 @@ class BooksPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Books'),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {

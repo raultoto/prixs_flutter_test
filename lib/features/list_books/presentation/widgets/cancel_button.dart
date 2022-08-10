@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prixs_flutter_test/shared/constants/app_colors.dart';
+import '../../../../shared/constants/app_colors.dart';
 
 class CancelButton extends StatelessWidget {
   const CancelButton({

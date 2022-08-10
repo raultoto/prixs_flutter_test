@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prixs_flutter_test/features/list_books/domain/entities/book_by_subject.dart';
-import 'package:prixs_flutter_test/features/list_books/presentation/widgets/poster_image.dart';
-import 'package:prixs_flutter_test/shared/constants/app_colors.dart';
+import '../../domain/entities/book_by_subject.dart';
+import 'poster_image.dart';
+import '../../../../shared/constants/app_colors.dart';
 
 class BooksData extends StatelessWidget {
   final List<BookBySubject> booksBySubject;
@@ -24,7 +24,7 @@ class BooksData extends StatelessWidget {
             style: const TextStyle(
               color: AppColors.white,
               fontWeight: FontWeight.bold,
-              fontSize: 20.0,
+              fontSize: 16.0,
             ),
           ),
         ),
@@ -41,21 +41,18 @@ class BooksData extends StatelessWidget {
               return GestureDetector(
                 onTap: () {},
                 child: Container(
-                  margin: EdgeInsets.all(5.0),
+                  margin: const EdgeInsets.all(5.0),
                   width: MediaQuery.of(context).size.width / 3.5,
-                  // decoration: BoxDecoration(
-                  //   color: AppColors.white,
-                  // ),
                   child: Column(
                     children: [
-                      Container(
+                      SizedBox(
                         height: MediaQuery.of(context).size.height / 5.0,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(5.0),
                           child: PosterImageWidget(id: currentBook.coverId),
                         ),
                       ),
-                      Text(currentBook.title ?? ''),
+                      Text(currentBook.title ?? '',textAlign: TextAlign.center,),
                     ],
                   ),
                 ),

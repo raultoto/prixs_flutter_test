@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:prixs_flutter_test/features/list_books/domain/entities/book_by_subject.dart';
+import '../entities/book_by_subject.dart';
 import '../entities/seach_obj.dart';
 
 abstract class BookRepository {

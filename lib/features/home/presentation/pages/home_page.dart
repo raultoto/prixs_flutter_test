@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:prixs_flutter_test/features/form/presentation/pages/form_page.dart';
-import 'package:prixs_flutter_test/features/list_books/presentation/pages/books_page.dart';
+
+import '../../../form/presentation/pages/form_page.dart';
+import '../../../list_books/presentation/pages/books_page.dart';
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final pages=[BooksPage(),FormPage()];
+  final pages=const [BooksPage(),FormPage()];
   int currentIndex=0;
   @override
   Widget build(BuildContext context) {

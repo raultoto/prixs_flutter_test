@@ -7,10 +7,12 @@ import 'injection.dart';
 
 void main() async {
   await configureInjection(Environment.dev);
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,13 +20,13 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
-      home: HomePage(),
-      supportedLocales: [
-        const Locale('en', ''),
-        const Locale('es', ''),
+      home: const HomePage(),
+      supportedLocales: const [
+        Locale('en', ''),
+        Locale('es', ''),
       ],
       locale: const Locale('es'),
-      localizationsDelegates: [
+      localizationsDelegates:const [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:prixs_flutter_test/features/list_books/presentation/widgets/book_detail.dart';
 
 
 class Routes {

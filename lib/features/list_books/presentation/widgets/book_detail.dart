@@ -1,10 +1,10 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:prixs_flutter_test/features/list_books/domain/entities/seach_obj.dart';
-import 'package:prixs_flutter_test/features/list_books/presentation/widgets/cancel_button.dart';
-import 'package:prixs_flutter_test/features/list_books/presentation/widgets/poster_image.dart';
-import 'package:prixs_flutter_test/shared/constants/app_colors.dart';
+import '../../domain/entities/seach_obj.dart';
+import 'cancel_button.dart';
+import 'poster_image.dart';
+import '../../../../shared/constants/app_colors.dart';
 
 class BookDetail extends StatelessWidget {
   final Doc? book;

@@ -1,8 +1,7 @@
 
 import 'dart:convert';
 
-import 'package:prixs_flutter_test/features/list_books/domain/entities/author.dart';
-
+import '../../domain/entities/author.dart';
 import '../../domain/entities/book_by_subject.dart';
 
 class BookBySubjectModel extends BookBySubject {

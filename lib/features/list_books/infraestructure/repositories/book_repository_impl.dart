@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:prixs_flutter_test/features/list_books/domain/entities/book_by_subject.dart';
-import 'package:prixs_flutter_test/features/list_books/infraestructure/models/book_by_subject_model.dart';
+import '../../domain/entities/book_by_subject.dart';
+import '../models/book_by_subject_model.dart';
 import '../models/doc_model.dart';
 
 import '../../domain/entities/seach_obj.dart';

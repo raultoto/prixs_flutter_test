@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:prixs_flutter_test/features/list_books/domain/repositories/book_repository.dart';
+import '../../domain/repositories/book_repository.dart';
 
 import '../../domain/entities/book_by_subject.dart';
 
