@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:injectable/injectable.dart';
 
 import 'features/home/presentation/pages/home_page.dart';
@@ -18,6 +19,16 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark(),
       themeMode: ThemeMode.dark,
       home: HomePage(),
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('es', ''),
+      ],
+      locale: const Locale('es'),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
     );
   }
 }

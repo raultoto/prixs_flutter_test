@@ -1,29 +1,10 @@
-import 'package:dartz/dartz.dart';
-
-import '../failures/failures.dart';
-
-Either<ValueFailure<String>, String> validateEmailAddress(String input) {
-  // Maybe not the most robust way of email validation but it's good enough
-  const emailRegex = r"""^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+""";
-  if (RegExp(emailRegex).hasMatch(input)) {
-    return right(input);
+String? emailValidation(String value) {
+  final pattern =
+      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+  final regex = RegExp(pattern);
+  if (!regex.hasMatch(value)) {
+    return 'Correo invalido';
   } else {
-    return left(ValueFailure.invalidEmail(failedValue: input));
-  }
-}
-
-Either<ValueFailure<String>, String> validatePassword(String input) {
-  if (input.length >= 6) {
-    return right(input);
-  } else {
-    return left(ValueFailure.shortPassword(failedValue: input));
-  }
-}
-
-
-String? dniValidation(String value) {
-  if (int.tryParse(value) != null && value.length == 8) {
     return null;
   }
-  return 'El dni no es valido';
 }
