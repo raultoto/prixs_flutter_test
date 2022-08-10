@@ -12,6 +12,14 @@ import 'package:http/http.dart' as http;
 
 @LazySingleton(as: BookRepository)
 class BookRepositoryImpl implements BookRepository {
+  /// We're making a GET request to the OpenLibrary API, decoding the response, and returning the decoded
+  /// data as a list of Docs
+  ///
+  /// Args:
+  ///   name (String): The name of the book you want to search for.
+  ///
+  /// Returns:
+  ///   Either<String, List<Doc>>
   @override
   Future<Either<String, List<Doc>>> searchBookByName(String name) async {
     try {
@@ -25,6 +33,13 @@ class BookRepositoryImpl implements BookRepository {
     }
   }
 
+  /// It searches for books by author name.
+  ///
+  /// Args:
+  ///   authorName (String): The name of the author you want to search for.
+  ///
+  /// Returns:
+  ///   Either<String, List<Doc>>
   @override
   Future<Either<String, List<Doc>>> searchBookByAuthor(String authorName) async {
     try {
@@ -38,6 +53,14 @@ class BookRepositoryImpl implements BookRepository {
     }
   }
 
+  /// We're making a GET request to the Open Library API, decoding the response, and returning a list of
+  /// books
+  ///
+  /// Args:
+  ///   categoryName (String): The name of the category you want to search for.
+  ///
+  /// Returns:
+  ///   Either<String, List<BookBySubject>>
   @override
   Future<Either<String, List<BookBySubject>>> searchBookByCategory(String categoryName) async {
     try {

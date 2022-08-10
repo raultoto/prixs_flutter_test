@@ -16,6 +16,14 @@ class SearchBookBloc extends Bloc<SearchBookEvent, SearchBookState> {
   SearchBookBloc(this._bookRepository) : super(const _Initial()) {
     on<SearchBookEvent>(_onEvent);
   }
+  /// _onEvent is a function that takes an event and an emitter and returns a future
+  /// 
+  /// Args:
+  ///   event (SearchBookEvent): The event that was dispatched.
+  ///   emit (Emitter<SearchBookState>): This is the function that you use to emit a new state.
+  /// 
+  /// Returns:
+  ///   A Future<void>
   Future<void> _onEvent(
     SearchBookEvent event,
     Emitter<SearchBookState> emit,

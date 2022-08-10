@@ -14,9 +14,18 @@ class LoadBooksBloc extends Bloc<LoadBooksEvent, LoadBooksState> {
   final BookRepository _bookRepository;
 
   LoadBooksBloc(this._bookRepository) : super(const _Initial()) {
-    on<LoadBooksEvent>(_onSvgToMuscleEvent);
+    on<LoadBooksEvent>(_onEvent);
   }
-  Future<void> _onSvgToMuscleEvent(
+
+  /// A function that takes an event and an emitter as parameters. It returns a future.
+  ///
+  /// Args:
+  ///   event (LoadBooksEvent): The event that was dispatched.
+  ///   emit (Emitter<LoadBooksState>): This is the function that you use to emit a new state.
+  ///
+  /// Returns:
+  ///   A Future<void>
+  Future<void> _onEvent(
     LoadBooksEvent event,
     Emitter<LoadBooksState> emit,
   ) {
